@@ -25,9 +25,8 @@ def index(request):
 
     print('Got request from {}'.format(matchObj.group(1)))
 
-    try:
-        RemoteNode.objects.filter(node_fqdn=matchObj.group(1), enabled=True)
+    if RemoteNode.objects.filter(node_fqdn=matchObj.group(1), enabled=True):
         payload = {'hello': matchObj.group(1)}
         return JsonResponse(payload, status=200)
-    except RemoteNode.DoesNotExist:
+    else:
         access_denied()
