@@ -28,5 +28,5 @@ def index(request):
     if RemoteNode.objects.filter(node_fqdn=matchObj.group(1), enabled=True):
         payload = {'hello': matchObj.group(1)}
         return JsonResponse(payload, status=200)
-    else:
-        access_denied()
+
+    access_denied()
