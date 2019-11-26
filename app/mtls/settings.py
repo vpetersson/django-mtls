@@ -33,6 +33,8 @@ DEBUG = string_to_bool(os.getenv('DEBUG', 'false'))
 
 ALLOWED_HOSTS = []
 
+if os.getenv('ALLOWED_HOSTS', False):
+    ALLOWED_HOSTS.append(os.getenv('ALLOWED_HOSTS'))
 
 # Application definition
 

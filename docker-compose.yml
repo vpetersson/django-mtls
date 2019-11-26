@@ -8,7 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile-appserver
     environment:
-      DEBUG: 1
+      DEBUG: 0
+      ALLOWED_HOSTS: dockerlon.vpetersson.com
     ports:
       - "8000:8000"
     depends_on:
