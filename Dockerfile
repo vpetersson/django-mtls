@@ -3,6 +3,7 @@ FROM python:3-alpine
 WORKDIR /usr/src/app
 
 ENV DOCKER 1
+ENV DEBUG 0
 
 RUN apk add --no-cache --virtual .build-deps \
     gcc \
