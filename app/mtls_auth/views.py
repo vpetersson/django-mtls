@@ -3,18 +3,14 @@ from django.http import JsonResponse
 from .models import RemoteNode
 
 
-def access_denied():
-    payload = {'msg': 'Access Denied'}
-    return JsonResponse(payload, status=401)
-
-
 def index(request):
     # For debugging
     for h in request.META:
         print(h)
 
     if not request.META.get('HTTP_SSL_CLIENT_VERIFY') == 'SUCCESS':
-        access_denied()
+        payload = {'msg': 'Access Denied'}
+        return JsonResponse(payload, status=401)
 
     # Extract Certificate
     matchObj = re.match(
@@ -29,4 +25,5 @@ def index(request):
         payload = {'hello': matchObj.group(1)}
         return JsonResponse(payload, status=200)
 
-    access_denied()
+    payload = {'msg': 'Access Denied'}
+    return JsonResponse(payload, status=401)
