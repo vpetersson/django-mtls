@@ -1,8 +1,7 @@
 FROM nginx:stable-alpine
 RUN apk add --no-cache --virtual .build-deps \
     curl \
-    openssl \
     jq \
     && curl -s https://api.wott.io/v0.2/ca-bundle | jq -r .ca_bundle  > /etc/ssl/wott-ca.crt \
-    && openssl dhparam -out /etc/ssl/dhparam.pem 4096 \
     && apk del --no-cache .build-deps
+COPY nginx/dhparams.pem /etc/ssl/dhparams.pem
