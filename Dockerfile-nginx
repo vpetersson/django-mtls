@@ -4,4 +4,4 @@ RUN apk add --no-cache --virtual .build-deps \
     jq \
     && curl -s https://api.wott.io/v0.2/ca-bundle | jq -r .ca_bundle  > /etc/ssl/wott-ca.crt \
     && apk del --no-cache .build-deps
-COPY nginx/dhparams.pem /etc/ssl/dhparams.pem
+COPY nginx/dhparam.pem /etc/ssl/dhparam.pem
