@@ -9,7 +9,7 @@ def index(request):
         print(h)
 
     if not request.META.get('HTTP_SSL_CLIENT_VERIFY') == 'SUCCESS':
-        payload = {'msg': 'Access Denied'}
+        payload = {'msg': 'You shall not pass!'}
         return JsonResponse(payload, status=401)
 
     # Extract Certificate
@@ -22,8 +22,8 @@ def index(request):
     print('Got request from {}'.format(matchObj.group(1)))
 
     if RemoteNode.objects.filter(node_fqdn=matchObj.group(1), enabled=True):
-        payload = {'hello': matchObj.group(1)}
+        payload = {'msg': 'hello {}'.format(matchObj.group(1))}
         return JsonResponse(payload, status=200)
 
-    payload = {'msg': 'Access Denied'}
+    payload = {'msg': 'You shall not pass!'}
     return JsonResponse(payload, status=401)
