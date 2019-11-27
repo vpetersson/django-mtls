@@ -8,9 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile-appserver
     environment:
-      DEBUG: 1
-    ports:
-      - "8000:8000"
+      DEBUG: 0
     depends_on:
       - db
   nginx:
