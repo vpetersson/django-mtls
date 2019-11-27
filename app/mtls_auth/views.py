@@ -15,8 +15,6 @@ def index(request):
         re.M | re.I
     )
 
-    print('Got request from {}'.format(matchObj.group(1)))
-
     if RemoteNode.objects.filter(node_fqdn=matchObj.group(1), enabled=True):
         payload = {'msg': 'Welcome {}. We\'ve been expecting you.'.format(matchObj.group(1))}
         return JsonResponse(payload, status=200)
